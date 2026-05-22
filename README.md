@@ -1,4 +1,3 @@
-````md
 # 🚀 NovaDocs AI
 
 > AI Powered Retrieval-Augmented Generation (RAG) System for Intelligent Document Question Answering
@@ -15,7 +14,7 @@ Built with Flask, ChromaDB, Sentence Transformers, and OpenRouter LLMs, NovaDocs
 - 🧠 AI-powered semantic search
 - 🔎 Vector similarity retrieval using embeddings
 - 🤖 LLM-generated contextual responses
-- ⚡ Fast Retrieval-Augmented Generation pipeline
+- ⚡ Fast Retrieval-Augmented Generation (RAG) pipeline
 - 🎨 Premium futuristic UI
 - 📚 Multi-document indexing
 - 📦 ChromaDB vector database integration
@@ -41,7 +40,7 @@ Vector Storage (ChromaDB)
 Semantic Retrieval
       ↓
 LLM Response Generation
-````
+```
 
 ---
 
@@ -49,25 +48,25 @@ LLM Response Generation
 
 ## Frontend
 
-* HTML5
-* CSS3
-* Vanilla JavaScript
+- HTML5
+- CSS3
+- Vanilla JavaScript
 
 ## Backend
 
-* Python
-* Flask
+- Python
+- Flask
 
 ## AI / ML
 
-* Sentence Transformers
-* OpenRouter API
-* ChromaDB
+- Sentence Transformers
+- OpenRouter API
+- ChromaDB
 
 ## Deployment
 
-* Render
-* GitHub
+- Render
+- GitHub
 
 ---
 
@@ -168,11 +167,11 @@ http://127.0.0.1:5000
 
 NovaDocs AI supports multiple LLMs via OpenRouter:
 
-* Llama 3.1
-* Mistral
-* Gemma
-* Qwen
-* DeepSeek
+- Llama 3.1
+- Mistral
+- Gemma
+- Qwen
+- DeepSeek
 
 ---
 
@@ -180,15 +179,15 @@ NovaDocs AI supports multiple LLMs via OpenRouter:
 
 ## Dashboard
 
-*Add screenshot here*
+_Add your dashboard screenshot here_
 
 ## Document Upload
 
-*Add screenshot here*
+_Add upload interface screenshot here_
 
 ## AI Response
 
-*Add screenshot here*
+_Add AI response screenshot here_
 
 ---
 
@@ -196,43 +195,44 @@ NovaDocs AI supports multiple LLMs via OpenRouter:
 
 This project is deployment-ready for:
 
-* Render
-* Railway
-* Replit
-* VPS Hosting
+- Render
+- Railway
+- Replit
+- VPS Hosting
 
 ## Deploy on Render
 
 1. Connect GitHub repository
 2. Add environment variable:
 
-   ```text
-   OPENROUTER_API_KEY
-   ```
+```text
+OPENROUTER_API_KEY
+```
+
 3. Deploy web service
 
 ---
 
 # 🔒 Security Notes
 
-* `.env` is excluded using `.gitignore`
-* API keys are never hardcoded
-* Vector database is locally isolated
+- `.env` is excluded using `.gitignore`
+- API keys are never hardcoded
+- Vector database is locally isolated
 
 ---
 
 # 📈 Future Improvements
 
-* Streaming AI responses
-* Authentication system
-* Chat history
-* OCR support
-* PDF preview
-* Voice input
-* Multi-user architecture
-* Docker support
-* LangChain integration
-* Citation highlighting
+- Streaming AI responses
+- Authentication system
+- Chat history
+- OCR support
+- PDF preview
+- Voice input
+- Multi-user architecture
+- Docker support
+- LangChain integration
+- Citation highlighting
 
 ---
 
@@ -254,11 +254,12 @@ This project is intended for educational and research purposes.
 
 If you like this project:
 
-* ⭐ Star the repository
-* 🍴 Fork the project
-* 🚀 Contribute improvements
+- ⭐ Star the repository
+- 🍴 Fork the project
+- 🚀 Contribute improvements
 
 ---
 
-```
-```
+## 🌟 NovaDocs AI
+
+AI Powered Document Intelligence & Retrieval System
