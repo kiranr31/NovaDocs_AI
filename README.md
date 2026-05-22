@@ -1,186 +1,264 @@
-# 🧠 DocMind RAG
+````md
+# 🚀 NovaDocs AI
 
-**Retrieval-Augmented Generation System**  
-*Chanakya University · School of Engineering · Prompt Engineering*  
-*Instructor: Mr. Deepak B · Reference: Lewis et al. 2020*
+> AI Powered Retrieval-Augmented Generation (RAG) System for Intelligent Document Question Answering
 
----
+NovaDocs AI is a modern AI-powered document intelligence platform that allows users to upload documents, index them into a vector database, and ask natural language questions using Retrieval-Augmented Generation (RAG).
 
-## What It Does
-
-DocMind RAG lets you upload any document (PDF, TXT, Markdown, CSV) and then ask
-natural-language questions about it. Instead of the LLM guessing from training
-memory, it retrieves the most relevant passages from your documents first — then
-generates a grounded, accurate answer.
-
-```
-You upload a doc  →  DocMind indexes it  →  You ask a question
-                                           ↓
-                              Retrieves top-K relevant passages
-                                           ↓
-                              Sends them + your question to LLM
-                                           ↓
-                              Returns a grounded, cited answer
-```
+Built with Flask, ChromaDB, Sentence Transformers, and OpenRouter LLMs, NovaDocs AI delivers contextual answers grounded in uploaded documents.
 
 ---
 
-## Five RAG Pipeline Stages
+# ✨ Features
 
-| Stage | Component | What Happens |
-|-------|-----------|--------------|
-| ① Ingest | `DocumentIngestor` | Load PDF/TXT/MD/CSV from disk |
-| ② Chunk  | `DocumentIngestor` | Split into overlapping text segments |
-| ③ Embed  | `KnowledgeStore`   | Convert chunks to 384-dim vectors (all-MiniLM-L6-v2) |
-| ④ Retrieve | `KnowledgeStore` | Cosine similarity search against query embedding |
-| ⑤ Generate | `AnswerGenerator` | Build grounded prompt → call OpenRouter LLM |
+- 📄 Upload PDF, TXT, CSV, and Markdown documents
+- 🧠 AI-powered semantic search
+- 🔎 Vector similarity retrieval using embeddings
+- 🤖 LLM-generated contextual responses
+- ⚡ Fast Retrieval-Augmented Generation pipeline
+- 🎨 Premium futuristic UI
+- 📚 Multi-document indexing
+- 📦 ChromaDB vector database integration
+- 🌐 OpenRouter LLM API support
+- 📊 Source relevance visualization
+- 🔐 Environment-based API key management
 
 ---
 
-## Project Structure
+# 🧩 RAG Pipeline
 
-```
-docmind_rag/
-├── app.py                  # Flask REST API (5 endpoints)
+NovaDocs AI follows a complete Retrieval-Augmented Generation workflow:
+
+```text
+Document Upload
+      ↓
+Document Chunking
+      ↓
+Embedding Generation
+      ↓
+Vector Storage (ChromaDB)
+      ↓
+Semantic Retrieval
+      ↓
+LLM Response Generation
+````
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+
+* HTML5
+* CSS3
+* Vanilla JavaScript
+
+## Backend
+
+* Python
+* Flask
+
+## AI / ML
+
+* Sentence Transformers
+* OpenRouter API
+* ChromaDB
+
+## Deployment
+
+* Render
+* GitHub
+
+---
+
+# 📂 Project Structure
+
+```text
+NovaDocs_AI/
+│
+├── app.py
+├── requirements.txt
+├── render.yaml
+├── Procfile
+├── .gitignore
+│
 ├── pipeline/
 │   ├── __init__.py
-│   ├── ingestor.py         # Stage 1–2: load + recursive chunk
-│   ├── embedder.py         # Stage 3–4: ChromaDB vector store
-│   └── generator.py        # Stage 5: OpenRouter LLM generation
+│   ├── ingestor.py
+│   ├── embedder.py
+│   └── generator.py
+│
 ├── templates/
-│   └── index.html          # Single-page chat UI
-├── documents/              # Uploaded documents (gitignored)
-├── .env.example            # Environment variable template
-├── requirements.txt
-├── Procfile                # For Render / Railway deployment
-├── render.yaml             # One-click Render deploy config
-└── README.md
+│   └── index.html
+│
+└── chroma_db/
 ```
 
 ---
 
-## Local Setup
+# ⚙️ Installation
 
-### Prerequisites
-- Python 3.10+
-- A free [OpenRouter](https://openrouter.ai) API key
-
-### Steps
+## 1️⃣ Clone Repository
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/docmind-rag.git
-cd docmind-rag
+git clone https://github.com/kiranr31/NovaDocs_AI.git
+```
 
-# 2. Create virtual environment
+---
+
+## 2️⃣ Navigate into Project
+
+```bash
+cd NovaDocs_AI
+```
+
+---
+
+## 3️⃣ Create Virtual Environment
+
+### Windows
+
+```bash
 python -m venv venv
-source venv/bin/activate        # Linux/Mac
-# venv\Scripts\activate         # Windows
+venv\Scripts\activate
+```
 
-# 3. Install dependencies
+### Linux / Mac
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+## 4️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-# 4. Configure environment
-cp .env.example .env
-# Open .env and paste your OpenRouter API key
+---
 
-# 5. Run
+# 🔑 Environment Variables
+
+Create a `.env` file in the root directory.
+
+```env
+OPENROUTER_API_KEY=your_api_key_here
+```
+
+---
+
+# ▶️ Run the Application
+
+```bash
 python app.py
-# → http://localhost:5000
+```
+
+Application will start at:
+
+```text
+http://127.0.0.1:5000
 ```
 
 ---
 
-## API Reference
+# 🌐 Supported Models
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET  | `/api/models` | List available LLM models |
-| GET  | `/api/stats`  | Knowledge base statistics |
-| POST | `/api/upload` | Upload + index a document |
-| POST | `/api/query`  | RAG query (retrieve + generate) |
-| POST | `/api/delete` | Remove one document |
-| POST | `/api/purge`  | Wipe entire knowledge base |
+NovaDocs AI supports multiple LLMs via OpenRouter:
 
-### Upload
-```bash
-curl -X POST http://localhost:5000/api/upload \
-  -F "file=@notes.pdf" \
-  -F "chunk_size=600" \
-  -F "overlap=120"
-```
-
-### Query
-```bash
-curl -X POST http://localhost:5000/api/query \
-  -H "Content-Type: application/json" \
-  -d '{"question": "What is chunking?", "model": "llama-3.1-8b", "top_k": 5}'
-```
+* Llama 3.1
+* Mistral
+* Gemma
+* Qwen
+* DeepSeek
 
 ---
 
-## Supported Models (Free via OpenRouter)
+# 📸 Screenshots
 
-| Key | Model |
-|-----|-------|
-| `llama-3.1-8b`  | Meta LLaMA 3.1 8B Instruct |
-| `mistral-7b`    | Mistral 7B Instruct |
-| `gemma-3-12b`   | Google Gemma 3 12B IT |
-| `qwen-2.5-7b`   | Qwen 2.5 7B Instruct |
-| `deepseek-r1`   | DeepSeek R1 |
+## Dashboard
+
+*Add screenshot here*
+
+## Document Upload
+
+*Add screenshot here*
+
+## AI Response
+
+*Add screenshot here*
 
 ---
 
-## Deploy to Render (Free Hosting)
+# 🚀 Deployment
 
-1. Push this repo to GitHub (see below)
-2. Go to [render.com](https://render.com) → **New → Web Service**
-3. Connect your GitHub repo
-4. Render auto-detects `render.yaml` — click **Deploy**
-5. In **Environment Variables**, add:
+This project is deployment-ready for:
+
+* Render
+* Railway
+* Replit
+* VPS Hosting
+
+## Deploy on Render
+
+1. Connect GitHub repository
+2. Add environment variable:
+
+   ```text
+   OPENROUTER_API_KEY
    ```
-   OPENROUTER_API_KEY = your_key_here
-   ```
-6. Your app is live at `https://docmind-rag.onrender.com`
-
-> **Note:** Render free tier spins down after 15 min inactivity. ChromaDB and
-> uploaded documents are ephemeral — re-upload after a cold start.
-> For persistence, upgrade to a paid plan or use an external vector DB.
+3. Deploy web service
 
 ---
 
-## Push to GitHub
+# 🔒 Security Notes
 
-```bash
-git init
-git add .
-git commit -m "Initial commit: DocMind RAG system"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/docmind-rag.git
-git push -u origin main
+* `.env` is excluded using `.gitignore`
+* API keys are never hardcoded
+* Vector database is locally isolated
+
+---
+
+# 📈 Future Improvements
+
+* Streaming AI responses
+* Authentication system
+* Chat history
+* OCR support
+* PDF preview
+* Voice input
+* Multi-user architecture
+* Docker support
+* LangChain integration
+* Citation highlighting
+
+---
+
+# 👨‍💻 Author
+
+**Kiran R**
+
+MCA Student — Chanakya University
+
+---
+
+# 📜 License
+
+This project is intended for educational and research purposes.
+
+---
+
+# ⭐ Support
+
+If you like this project:
+
+* ⭐ Star the repository
+* 🍴 Fork the project
+* 🚀 Contribute improvements
+
+---
+
 ```
-
----
-
-## Key Concepts (Assignment Reference)
-
-**Why RAG?**  
-LLMs have a knowledge cutoff and hallucinate on out-of-training topics.
-RAG grounds responses in real documents at inference time.
-
-**Chunking matters:**  
-Chunks too large → irrelevant content dilutes signal.  
-Chunks too small → loss of coherent context.  
-Sweet spot: 500–800 tokens with 100–150 token overlap.
-
-**Cosine similarity:**  
-Measures angle between embedding vectors. Score of 1.0 = identical meaning.
-Score of 0.0 = completely unrelated.
-
-**Faithfulness:**  
-A RAG answer is "faithful" if every claim is supported by the retrieved context.
-This is the most important RAGAS metric.
-
----
-
-*Built for Prompt Engineering Assignment · Chanakya University · 2026*
+```
